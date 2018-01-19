@@ -55,6 +55,7 @@ export default class Grid extends React.Component {
                 
                 onLayout={(e) => {
                     const nativeLayout = e.nativeEvent.layout;
+                    console.warn(nativeLayout);
                     InteractionManager.runAfterInteractions(() => {
                         this.animFrame = requestAnimationFrame(() => {
                         this.callback(nativeLayout);
