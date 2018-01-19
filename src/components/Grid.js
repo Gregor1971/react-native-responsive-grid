@@ -28,10 +28,10 @@ export default class Grid extends React.Component {
         cancelAnimationFrame(this.animFrame)
     }
 
-    callback = (e) => {
+    callback = (nativeLayout) => {
         const layout = {
           screen: ScreenInfo(), 
-          grid: e.nativeEvent.layout
+          grid: nativeLayout
         }
         this.setState((state) => {
             return {...state, layout}
@@ -54,10 +54,10 @@ export default class Grid extends React.Component {
                 ]}
                 
                 onLayout={(e) => {
-                    e.persist()
+                    const nativeLayout = e.nativeEvent.layout;
                     InteractionManager.runAfterInteractions(() => {
                         this.animFrame = requestAnimationFrame(() => {
-                        this.callback(e)
+                        this.callback(nativeLayout);
                         })
                     })
                 }}
